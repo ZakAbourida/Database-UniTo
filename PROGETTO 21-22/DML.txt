@@ -1,0 +1,106 @@
+insert into UTENTE(email, passwordutente, nomeutente, cognomeutente, fotodocumento, metodopagamento, verificato) VALUES('abourida@unito.it','arancia',' Zakaria', 'Abourida', true, true, true);
+insert into UTENTE(email, passwordutente, nomeutente, cognomeutente, fotodocumento, metodopagamento, verificato) VALUES('Lavric@unito.it', 'mandarino', 'Cosmin', 'Lavric', false, true, false);
+insert into UTENTE(email, passwordutente, nomeutente, cognomeutente, fotodocumento, metodopagamento, verificato) VALUES('eusebio@unito.it', 'pesca', 'Stefano', 'Eusebio', true, true, true);
+insert into UTENTE(email, passwordutente, nomeutente, cognomeutente, fotodocumento, metodopagamento, verificato) VALUES('calcutta@unito.it', 'ananas', 'Marco', 'Calcutta', false, true, false);
+insert into UTENTE(email, passwordutente, nomeutente, cognomeutente, fotodocumento, metodopagamento, verificato) VALUES('diparma@unito.it', 'pera', 'Francesco', 'Diparma', true, true, true);
+
+insert into TELEFONO(cellulare, proprietario) VALUES('3265165410', 'abourida@unito.it');
+insert into TELEFONO(cellulare, proprietario) VALUES('5165121561', 'Lavric@unito.it');
+insert into TELEFONO(cellulare, proprietario) VALUES('5198131065', 'eusebio@unito.it');
+insert into TELEFONO(cellulare, proprietario) VALUES('1654116516', 'calcutta@unito.it');
+insert into TELEFONO(cellulare, proprietario) VALUES('1616411351', 'diparma@unito.it');
+
+insert into HOST(idhost, tassocancellazione, iban, emailUtente) VALUES('host000001',0.5,'sf086dasfg95','abourida@unito.it');
+insert into HOST(idhost, tassocancellazione, iban, emailUtente) VALUES('host000002',1,'fo3b304g0333', 'Lavric@unito.it');
+
+insert into OSPITE(idospite, emailUtente) VALUES('ospite0001', 'eusebio@unito.it');
+insert into OSPITE(idospite, emailUtente) VALUES('ospite0002', 'calcutta@unito.it');
+insert into OSPITE(idospite, emailUtente) VALUES('ospite0003', 'diparma@unito.it');
+
+insert into LISTA(nomelista, emailutente) VALUES('estate2k22', 'abourida@unito.it');
+insert into LISTA(nomelista, emailutente) VALUES('primavera2k23', 'diparma@unito.it');
+
+insert into ALLOGGIO(idalloggio, host, nomealloggio, indirizzo, civico, comune, costipulizia, prezzo, numeroletti, numerocameredaletto, checkin, checkout, descrizionealloggio, tipoalloggio, mediarating)
+VALUES('alloggio01', 'host000001', 'casaStregata', 'via garibaldi', 31, 'Torino', 30, 50, 3, 2, '15:00', '12:00', 'bella casa', 'Appartamento', 4.8);
+insert into ALLOGGIO(idalloggio, host, nomealloggio, indirizzo, civico, comune, costipulizia, prezzo, numeroletti, numerocameredaletto, checkin, checkout, descrizionealloggio, tipoalloggio, mediarating)
+VALUES('alloggio02', 'host000001', 'casa in campagna', 'via cavour', 12, 'Milano', 45, 70,1, 1, '18:00', '9:00', 'accogliente e carina', 'Stanza Privata', 3.0);
+insert into ALLOGGIO(idalloggio, host, nomealloggio, indirizzo, civico, comune, costipulizia, prezzo, numeroletti, numerocameredaletto, checkin, checkout, descrizionealloggio, tipoalloggio, mediarating)
+VALUES('alloggio03', 'host000002', 'Giuseppina', 'via ernesto', 5, 'Trieste', 80, 200, 6, 4, '16:00', '10:00', 'lusso sfrenato per tanti amici', 'Appartamento', 5.0);
+
+insert into CONSERVA(lista, alloggio) VALUES('estate2k22', 'alloggio01');
+insert into CONSERVA(lista, alloggio) VALUES('estate2k22', 'alloggio03');
+insert into CONSERVA(lista, alloggio) VALUES('primavera2k23', 'alloggio02');
+
+insert into FOTO(codfoto, immagine, alloggio) VALUES('foto000001', true, 'alloggio01');
+insert into FOTO(codfoto, immagine, alloggio) VALUES('foto000002', true, 'alloggio01');
+insert into FOTO(codfoto, immagine, alloggio) VALUES('foto000003', true, 'alloggio01');
+insert into FOTO(codfoto, immagine, alloggio) VALUES('foto000004', true, 'alloggio02');
+insert into FOTO(codfoto, immagine, alloggio) VALUES('foto000005', true, 'alloggio02');
+insert into FOTO(codfoto, immagine, alloggio) VALUES('foto000006', true, 'alloggio03');
+insert into FOTO(codfoto, immagine, alloggio) VALUES('foto000007', true, 'alloggio03');
+insert into FOTO(codfoto, immagine, alloggio) VALUES('foto000008', true, 'alloggio03');
+
+insert into SERVIZIO(nomeservizio, descrizioneservizio) VALUES('Bagno', 'bagno per bisogni');
+insert into SERVIZIO(nomeservizio, descrizioneservizio) VALUES('Cucina', 'grande cucina');
+insert into SERVIZIO(nomeservizio, descrizioneservizio) VALUES('Soggiorno', 'soggiorno con 2 divani');
+insert into SERVIZIO(nomeservizio, descrizioneservizio) VALUES('Tv','Televisione');
+insert into SERVIZIO(nomeservizio, descrizioneservizio) VALUES('Lavanderia','stanza con elettrodomestici per lavaggio panni...');
+insert into SERVIZIO(nomeservizio, descrizioneservizio) VALUES('Terrazza','ampia terrazza');
+insert into SERVIZIO(nomeservizio, descrizioneservizio) VALUES('Giardino', '30mq di giardino');
+
+insert into DOTATO(servizio, alloggio) VALUES('Bagno', 'alloggio01');
+insert into DOTATO(servizio, alloggio) VALUES('Bagno', 'alloggio02');
+insert into DOTATO(servizio, alloggio) VALUES('Bagno','alloggio03');
+insert into DOTATO(servizio, alloggio) VALUES('Cucina', 'alloggio01');
+insert into DOTATO(servizio, alloggio) VALUES('Cucina', 'alloggio02');
+insert into DOTATO(servizio, alloggio) VALUES('Cucina','alloggio03');
+insert into DOTATO(servizio, alloggio) VALUES('Soggiorno', 'alloggio01');
+insert into DOTATO(servizio, alloggio) VALUES('Soggiorno', 'alloggio02');
+insert into DOTATO(servizio, alloggio) VALUES('Soggiorno','alloggio03');
+insert into DOTATO(servizio, alloggio) VALUES('Tv', 'alloggio01');
+insert into DOTATO(servizio, alloggio) VALUES('Tv', 'alloggio02');
+insert into DOTATO(servizio, alloggio) VALUES('Tv','alloggio03');
+insert into DOTATO(servizio, alloggio) VALUES('Terrazza', 'alloggio02');
+insert into DOTATO(servizio, alloggio) VALUES('Terrazza','alloggio03');
+insert into DOTATO(servizio, alloggio) VALUES('Giardino', 'alloggio03');
+
+insert into PRENOTAZIONE(idprenotazione, ospite, alloggio, datainizio, datafine, costototale, numeroospiti, stato)
+VALUES('prenot0001', 'ospite0001', 'alloggio01', '2022-07-22', '2022-07-30', 730, 2, 'In Corso');
+insert into PRENOTAZIONE(idprenotazione, ospite, alloggio, datainizio, datafine, costototale, numeroospiti, stato)
+VALUES('prenot0002', 'ospite0002', 'alloggio02', '2022-07-22', '2022-08-30',535, 1, 'Archiviata');
+insert into PRENOTAZIONE(idprenotazione, ospite, alloggio, datainizio, datafine, costototale, numeroospiti,stato)
+VALUES('prenot0003', 'ospite0003', 'alloggio03', '2022-07-22', '2022-07-30', 4280, 3, 'Confermata');
+
+insert into RECENSIONE(idrecensione, prenotazione, visibile) VALUES('rec0000001', 'prenot0001', true);
+
+insert into RECENSIONE_HOST(idrecensionehost, host, testoospite, recensione) 
+VALUES('rechost001', 'host000001', 'buon ospite', 'rec0000001');
+
+insert into RECENSIONE_OSPITE(idrecensioneospite, ospite, testoalloggio, testohost, valutazionefinale, recensione)
+VALUES('recosp0001', 'host000002', 'posto carino', 'host molto gentile', 4, 'rec0000001');
+
+insert into VALUTAZIONE(nomevalutazione, voto, descrizionevoto) 
+VALUES('Bagno', 3,'niente di che');
+insert into VALUTAZIONE(nomevalutazione, voto, descrizionevoto) 
+VALUES('Cucina', 3, 'carina');
+insert into VALUTAZIONE(nomevalutazione, voto, descrizionevoto) 
+VALUES('Soggiorno', 2, 'povero');
+insert into VALUTAZIONE(nomevalutazione, voto, descrizionevoto) 
+VALUES('Tv', 5, 'gigante');
+
+insert into GIUDICA(valutazioneservizio, recensioneospite)
+VALUES('Bagno', 'recosp0001');
+insert into GIUDICA(valutazioneservizio, recensioneospite)
+VALUES('Cucina', 'recosp0001');
+insert into GIUDICA(valutazioneservizio, recensioneospite)
+VALUES('Soggiorno', 'recosp0001');
+insert into GIUDICA(valutazioneservizio, recensioneospite)
+VALUES('Tv', 'recosp0001');
+
+
+
+
+
+
+
+

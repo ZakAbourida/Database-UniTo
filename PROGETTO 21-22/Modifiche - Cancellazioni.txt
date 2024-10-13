@@ -1,0 +1,41 @@
+UPDATE LISTA SET nomeLista = 'estate' WHERE nomeLista = 'estate2k22';
+UPDATE LISTA SET nomeLista = 'estate2' WHERE emailUtente = 'abourida@unito.it';
+UPDATE LISTA SET nomeLista = 'estateFuturistica' WHERE nomeLista = 'estate2';
+
+DELETE FROM LISTA WHERE nomeLista = 'estate2k22';
+DELETE FROM LISTA WHERE nomeLista = 'estate';
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+UPDATE TELEFONO SET Cellulare = '1234567899' WHERE Cellulare = '1616411351';
+UPDATE TELEFONO SET Proprietario = 'diparma@unito.it' WHERE Cellulare = '0123456789';
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+insert into TELEFONO(cellulare, proprietario) VALUES('9876543211', 'diparma@unito.it');
+DELETE FROM TELEFONO WHERE Cellulare = '9876543211';
+
+UPDATE OSPITE SET idOspite = 'jnnjhaci21' WHERE idOspite = 'safpnbp0i2';
+UPDATE OSPITE SET idOspite = 'rtowpjrnr2' WHERE idOspite = 'jnnjhaci21';
+UPDATE OSPITE SET idOspite = '965ewrg165' WHERE idOspite = 'rtowpjrnr2';
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+insert into UTENTE(email, passwordutente, nomeutente, cognomeutente, fotodocumento, metodopagamento, verificato)
+VALUES ('digiorio@gmail.com', 'banana', 'mario', 'digiorgio', false, false, false);
+UPDATE UTENTE SET fotoDocumento = true WHERE email = 'digiorio@gmail.com';
+UPDATE UTENTE SET verificato = true WHERE fotodocumento = true;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+insert into ALLOGGIO(idalloggio, host, nomealloggio, indirizzo, civico, comune, costipulizia, prezzo, numeroletti, numerocameredaletto, checkin, checkout, descrizionealloggio, tipoalloggio, mediarating)
+VALUES('abcdefgh32', 'svba0ibbpw', 'casa in montagna', 'via marta', 1, 'Roma', 30, 50, 3, 2, '15:00', '12:00', 'bella casa', 'Appartamento', 2.5);
+insert into ALLOGGIO(idalloggio, host, nomealloggio, indirizzo, civico, comune, costipulizia, prezzo, numeroletti, numerocameredaletto, checkin, checkout, descrizionealloggio, tipoalloggio, mediarating)
+VALUES('nnjnjnjn17', 'svba0ibbpw', 'casa in collina', 'via giuseppe', 80, 'Ivrea', 30, 50, 1, 1, '15:00', '12:00', 'bella casa', 'Stanza Condivisa', 1.0);
+
+DELETE FROM ALLOGGIO WHERE idAlloggio = 'okrt4861vs';
+
+
+
+
+

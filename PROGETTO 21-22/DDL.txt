@@ -1,0 +1,117 @@
+create table UTENTE(
+            Email           varchar(30) primary key,
+            PasswordUtente  varchar(20) not null,
+            NomeUtente      varchar(20) not null,
+            CognomeUtente   varchar(20) not null,
+            FotoDocumento   boolean,
+            MetodoPagamento boolean,
+            Verificato      boolean
+            );
+			
+create table LISTA(
+            NomeLista       varchar(30) primary key,
+            EmailUtente     varchar(30) references UTENTE(email) ON DELETE CASCADE ON UPDATE CASCADE
+            );
+			
+create table TELEFONO(
+            Cellulare       numeric(10) primary key CHECK(Cellulare>999999999),
+            Proprietario    varchar(20) references UTENTE(email) ON DELETE CASCADE ON UPDATE CASCADE
+            );
+			
+create table OSPITE(
+            idOspite        varchar(10) primary key,
+            emailUtente     varchar(30) unique references UTENTE(email) ON DELETE NO ACTION ON UPDATE CASCADE
+            );
+			
+create table HOST(
+            idHost          varchar(10) primary key,
+            TassoCancellazione  float(3),
+            Iban            varchar(27) not null,
+            emailUtente     varchar(30) unique references UTENTE(email) ON DELETE NO ACTION ON UPDATE CASCADE
+            );
+			
+create domain TipoAll as varchar(20) CHECK (VALUE ='Appartamento' OR VALUE ='Stanza Condivisa' OR VALUE ='Stanza Privata' );
+
+create table ALLOGGIO(
+            idAlloggio      varchar(10) primary key,
+            Host            varchar(10) references HOST(idHost) ON DELETE NO ACTION ON UPDATE CASCADE,
+            NomeAlloggio    varchar(30) not null,
+            Indirizzo       varchar(40) not null,
+            Civico          numeric(3),
+            Comune          varchar(30) not null,
+            CostiPulizia    numeric(4)  not null check(CostiPulizia > 0),
+            Prezzo          numeric(7)  not null check(Prezzo > 0),
+            NumeroLetti     numeric(2)  not null check(NumeroLetti > 0),
+            NumeroCamereDaLetto numeric(2) check(NumeroCamereDaLetto > 0),
+            CheckIn         time not null check (Checkin > CheckOut),
+            CheckOut        time not null check (CheckOut < CheckIn),
+            DescrizioneAlloggio varchar(250),
+            TipoAlloggio    TipoAll not null,
+            MediaRating     float(5)
+            );
+create table CONSERVA(
+            Lista           varchar(20) references LISTA(NomeLista) ON DELETE CASCADE ON UPDATE CASCADE,
+            Alloggio        varchar(10) references ALLOGGIO(idAlloggio) ON DELETE CASCADE ON UPDATE CASCADE
+            );
+create table FOTO(
+            CodFoto         varchar(10) primary key,
+            Immagine        boolean,
+            Alloggio        varchar(10) references ALLOGGIO(idAlloggio) ON DELETE CASCADE ON UPDATE CASCADE
+            );
+create table SERVIZIO(
+            nomeServizio    varchar(25) primary key,
+            DescrizioneServizio varchar(250)
+            );
+
+create table DOTATO(
+            Servizio        varchar(25) references SERVIZIO(nomeServizio) ON DELETE CASCADE ON UPDATE CASCADE,
+            Alloggio        varchar(10) references ALLOGGIO(idAlloggio) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+            
+create domain statoprenotazione AS VARCHAR(12) CHECK(VALUE ='Archiviata' OR VALUE ='Confermata' OR VALUE ='Cancellata' OR VALUE='In Corso');
+
+create table PRENOTAZIONE(
+            idPrenotazione  varchar(10) primary key,
+            Ospite          varchar(30) references OSPITE(idOspite) ON DELETE NO ACTION ON UPDATE CASCADE,
+            Alloggio        varchar(10) references ALLOGGIO(idAlloggio) ON DELETE NO ACTION ON UPDATE CASCADE,
+            DataInizio      date not null,
+            DataFine        date not null,
+            CostoTotale     numeric(5) not null check(CostoTotale > 0),
+            NumeroOspiti    numeric(3) not null check(NumeroOspiti > 0),
+	        Stato		    statoprenotazione not null
+            );
+create table RECENSIONE(
+            idRecensione    varchar(10) primary key,
+            Prenotazione    varchar(10) unique references PRENOTAZIONE(idPrenotazione) ON DELETE CASCADE ON UPDATE CASCADE,
+            Visibile        boolean
+            );
+create table COMMENTO(
+            idCommento      varchar(20) primary key,
+            TestoCommento   varchar(100) not null,
+            Recensione      varchar(10) references RECENSIONE(idRecensione) ON DELETE CASCADE ON UPDATE CASCADE
+            );
+create table RECENSIONE_HOST(
+            idRecensioneHost    varchar(10) primary key,
+            Host                varchar(10) unique references HOST(idHost) ON DELETE NO ACTION ON UPDATE CASCADE,
+            TestoOspite         varchar(150),
+            Recensione          varchar(10) unique references RECENSIONE(idRecensione) ON DELETE NO ACTION ON UPDATE CASCADE
+            );
+create table RECENSIONE_OSPITE(
+            idRecensioneOspite  varchar(10) primary key,
+            Ospite              varchar(10) unique references OSPITE(idOspite) ON DELETE NO ACTION ON UPDATE CASCADE,
+            TestoAlloggio       varchar(150),
+            TestoHost           varchar(150),
+            ValutazioneFinale   numeric(5),
+            Recensione          varchar(10) unique references RECENSIONE(idRecensione) ON DELETE NO ACTION ON UPDATE CASCADE
+            );
+create table VALUTAZIONE(
+            NomeValutazione     varchar(25) primary key,
+            Voto                numeric(2) not null check(Voto > 0 AND Voto <= 5),
+            DescrizioneVoto     varchar(150)
+            );
+create table GIUDICA(
+            ValutazioneServizio varchar(25) references VALUTAZIONE(NomeValutazione),
+            RecensioneOspite    varchar(10) references RECENSIONE_OSPITE(idRecensioneOspite)
+
+);
